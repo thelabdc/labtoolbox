@@ -1,0 +1,11 @@
+Package: labtoolbox
+Title: Laboriously Assembled and Built Tools for Optimizing Operations @ The Lab for Beginners, Outputs, and eXperience
+Version: 0.0.0.9000
+Authors@R: 
+    person("Alyssa", "Huberts", , "first.last@example.com", role = c("aut", "cre"))
+Description: This package collates a set of functions that staff at The Lab @ DC use frequently, and sets standard themes for plots and figures. Please add functions as useful!
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2

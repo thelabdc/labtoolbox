@@ -35,7 +35,7 @@ theme_lab <- function(base_size = 12, palette = "lab", fonts_mmb = FALSE) {
   custom_theme <- ggplot2::theme_classic(base_size = base_size, base_family = base_family) +
     ggplot2::theme(
       plot.title = ggplot2::element_text(face = "bold", size = base_size * 1.2, color = "black", hjust = .5),
-      plot.subtitle = ggplot2::element_text(size = base_size, color = "#333333"),
+      plot.subtitle = ggplot2::element_text(size = base_size, color = "#333333",hjust = .5),
       axis.title = ggplot2::element_text(size = base_size, color = "#333333"),
       axis.text = ggplot2::element_text(size = base_size * 0.9, color = "#555555"),
       panel.grid.major = ggplot2::element_line(color = "white"),

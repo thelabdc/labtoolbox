@@ -8,7 +8,7 @@
 #' scale_color_manual(values = lab_colors[c("lab_blue", "lab_red", "lab_light_blue")])
 #'
 #' @export
-lab_colors <- c( "#2B4888","#CF3A4B","#DCF1FE", "#4D4D4D", "#1B998B", "#FFECC0","#FF6E52", "#012C3B")
+lab_colors <- c( "#4D4D4D", "#2B4888","#CF3A4B","#DCF1FE", "#1B998B", "#FFECC0","#FF6E52", "#012C3B")
 
 #' Lab color palette
 #'
@@ -21,14 +21,14 @@ lab_colors <- c( "#2B4888","#CF3A4B","#DCF1FE", "#4D4D4D", "#1B998B", "#FFECC0",
 #'
 #' @export
 lab_colors_named <-
-  c("lab_gunmetal" ="#012C3B",
+  c("lab_gray"="#4D4D4D",
     "lab_blue"="#2B4888",
     "lab_red"="#CF3A4B",
-    "lab_gray"="#4D4D4D",
     "lab_teal"= "#1B998B",
     "lab_yellow"= "#FFECC0",
     "lab_coral" = "#FF6E52",
-    "lab_light_blue" = "#DCF1FE")
+    "lab_light_blue" = "#DCF1FE",
+    "lab_gunmetal" ="#012C3B")
 
 #' DDOT color palette
 #'

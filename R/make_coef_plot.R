@@ -16,11 +16,12 @@
 # Function to return linear combinations of coefficients, with confidence intervals
 make_coef_plot <- function(model_list = list(sample_model_1, sample_model_2, sample_model_3),
                            model_names = c("Outcome 1", "Outcome 2","Outcome 3"),
+                           ci_level = .95,
                            treat_vars = c("sample_treatment1", "sample_treatment1", "sample_treatment1"),
-                                          plot_title = "Treatment effects",
-                                          plot_subtitle = "95% confidence intervals",
-                                          plot_caption = "The Lab @ DC. Regression results from a randomized evaluation.",
-                                          return_ci_table = FALSE,
+                           plot_title = "Treatment effects",
+                           plot_subtitle = "95% confidence intervals",
+                           plot_caption = "The Lab @ DC. Regression results from a randomized evaluation.",
+                          return_ci_table = FALSE,
                                           ...) {
 
   if(length(treat_vars) == 1){

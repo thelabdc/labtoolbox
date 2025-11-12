@@ -17,11 +17,15 @@ make_ci_barplot(
 
 \item{treat_arms}{A character vector for the treatment arms, as reported in the regression}
 
-\item{ci_level}{= .95}
+\item{ci_level}{The confidence level for the bar plot's intervals, expressed as a probability}
+
+\item{plot_caption}{A character string with a caption for the plot}
+
+\item{...}{Other arguments passed to \code{theme_lab()}}
 }
 \value{
 A bar plot with a confidence interval on the treatment arms
 }
 \description{
-This function takes regression output and makes a bar plot which compares a control group with a treatment group, adding confidence intervals to the treatment groups.
+Take regression output and make a bar plot which compares a control group with a treatment group, adding confidence intervals to the treatment groups.
 }

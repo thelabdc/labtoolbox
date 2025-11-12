@@ -1,15 +1,19 @@
 #' make_ci_barplot
 #'
-#' This function takes regression output and makes a bar plot which compares a control group with a treatment group, adding confidence intervals to the treatment groups.
+#' Take regression output and make a bar plot which compares a control group with a treatment group, adding confidence intervals to the treatment groups.
 #'
 #' @param model The regression whose results you want to plot
 #' @param treat_arms A character vector for the treatment arms, as reported in the regression
-#' @param ci_level = .95
+#' @param ci_level The confidence level for the bar plot's intervals, expressed as a probability
+#' @param plot_caption A character string with a caption for the plot
+#' @param ... Other arguments passed to \code{theme_lab()}
+#' 
 #' @return A bar plot with a confidence interval on the treatment arms
-#' @import tidyverse
+#' @import dplyr ggplot2 tibble
 #' @export
 # Function to return linear combinations of coefficients, with confidence intervals
-make_ci_barplot <- function(model = sample_model_1, treat_arms = c("sample_treatment1"),
+make_ci_barplot <- function(model = sample_model_1, 
+                            treat_arms = c("sample_treatment1"),
                             ci_level = .95,
                             plot_caption = "Sample Plot Caption",
                             ...){
@@ -41,30 +45,36 @@ make_ci_barplot <- function(model = sample_model_1, treat_arms = c("sample_treat
 
   # make a table of the relevant linear combinations
 
-  coef_table <-
-    tibble::tibble(
+  coef_table <- tibble(
     term = c("Control", treat_arms),
-    estimate = as.numeric(unlist(tidy_model[tidy_model$term == "(Intercept)"|tidy_model$term %in% treat_arms,"estimate"])),
-    se = as.numeric(unlist(tidy_model[tidy_model$term == "(Intercept)"|tidy_model$term %in% treat_arms,"std.error"]))) |>
-    dplyr::mutate(
+    estimate = as.numeric(unlist(tidy_model[tidy_model$term == "(Intercept)" | tidy_model$term %in% treat_arms, "estimate"])),
+    se = as.numeric(unlist(tidy_model[tidy_model$term == "(Intercept)" | tidy_model$term %in% treat_arms, "std.error"]))) |>
+    mutate(
       linear_combination = dplyr::case_when(
         term == "Control" ~  estimate,
         term != "Control" ~ estimate + intercept)
-      )|>
-    dplyr::mutate(ci_upper = ifelse(term == "Control", NA, linear_combination + ( qnorm(1- (1-ci_level)/2)*se)),
-           ci_lower = ifelse(term == "Control", NA, linear_combination - ( qnorm(1- (1-ci_level)/2)*se))
+      ) |>
+    mutate(
+      ci_upper = ifelse(term == "Control", 
+                        NA, 
+                        linear_combination + (qnorm(1 - (1 - ci_level) / 2) * se)),
+      ci_lower = ifelse(term == "Control", 
+                        NA, 
+                        linear_combination - (qnorm(1 - (1 - ci_level) / 2) * se))
     )
 
   # make the plot
-  coef_plot <- ggplot2::ggplot(coef_table) + ggplot2::geom_bar(ggplot2::aes(x = term, y = linear_combination, fill = term), stat = "identity")+
-    ggplot2::geom_errorbar(data = coef_table, ggplot2::aes(x = term, ymin =ci_lower,ymax = ci_upper), width = .75) +
-    theme_lab(...)+
-    ggplot2::labs(caption = plot_caption,
+  coef_plot <- ggplot(coef_table) + 
+    geom_bar(aes(x = term, y = linear_combination, fill = term), stat = "identity") +
+    geom_errorbar(data = coef_table, aes(x = term, ymin = ci_lower, ymax = ci_upper), width = .75) +
+    theme_lab(...) +
+    labs(caption = plot_caption,
          title = "Treatment Effect",
          subtitle = "95% Confidence Intervals",
          x = "",
-         y = "Estimated outcome",
+         y = "Estimated Outcome",
          fill = "")
+  
   return(coef_plot)
 
 }

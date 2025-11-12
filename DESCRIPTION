@@ -1,14 +1,21 @@
 Package: labtoolbox
 Title: Laboriously Assembled and Built Tools for Optimizing Operations @ The Lab for Beginners, Outputs, and eXperience
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: 
-    person("Alyssa", "Huberts", , "first.last@example.com", role = c("aut", "cre"))
-Description: This package collates a set of functions that staff at The Lab @ DC use frequently, and sets standard themes for plots and figures. Please add functions as useful!
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    c(person("Alyssa", "Huberts", email = "alyssa.huberts@dc.gov", 
+        role = c("aut", "cre")),
+      person("Ryan", "Moore", "T.", email = "ryan.moore2@dc.gov", 
+        role = c("aut", "ctb"), comment = c(ORCID = "0000-0002-3916-8113"))
+      )
+Description: This package collates a set of functions that staff at The Lab @ DC use frequently, and sets standard themes for plots and figures.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Depends: 
-    R (>= 3.5)
+    R (>= 4.1.0)
 LazyData: true
+Imports: 
+    dplyr,
+    ggplot2,
+    tibble

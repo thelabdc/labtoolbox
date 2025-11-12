@@ -1,14 +1,14 @@
-#' Custom ggplot2 theme for the Lab, modifiable
+#' Custom ggplot2 theme for The Lab
 #'
 #' Applies a minimal theme and custom discrete color/fill scales.
 #'
-#' @param base_size Base font size.
-#' @param palette Either "lab", "ddot", or a character vector of hex colors.
-#' @param fonts_mmb Logical. If TRUE, uses the Neutra Text font family
+#' @param base_size A numeric base font size.
+#' @param palette A character string; one of \code{"lab"}, \code{"ddot"}, or a character vector of hex colors.
+#' @param fonts_mayor A logical. If \code{TRUE}, uses the Neutra Text font family
 #'
 #' @return A list of ggplot2 theme and scale components.
 #' @export
-theme_lab <- function(base_size = 12, palette = "lab", fonts_mmb = FALSE) {
+theme_lab <- function(base_size = 12, palette = "lab", fonts_mayor = FALSE) {
 
   # Handle palette input
   if (is.character(palette) && length(palette) == 1) {
@@ -17,7 +17,6 @@ theme_lab <- function(base_size = 12, palette = "lab", fonts_mmb = FALSE) {
                       "ddot" = ddot_colors,
                       stop("Invalid palette name. Use 'lab', 'ddot', or provide a vector of hex codes."))
   }
-
 
   # Internal scale functions
   scale_color_lab <- function() {
@@ -29,7 +28,7 @@ theme_lab <- function(base_size = 12, palette = "lab", fonts_mmb = FALSE) {
   }
 
   # Set font family
-  base_family <- if (fonts_mmb) "Neutra" else ""
+  base_family <- if (fonts_mayor) "Neutra" else ""
 
   # Define the theme
   custom_theme <- ggplot2::theme_classic(base_size = base_size, base_family = base_family) +

@@ -2,16 +2,16 @@
 % Please edit documentation in R/themes.R
 \name{theme_lab}
 \alias{theme_lab}
-\title{Custom ggplot2 theme for the Lab, modifiable}
+\title{Custom ggplot2 theme for The Lab}
 \usage{
-theme_lab(base_size = 12, palette = "lab", fonts_mmb = FALSE)
+theme_lab(base_size = 12, palette = "lab", fonts_mayor = FALSE)
 }
 \arguments{
-\item{base_size}{Base font size.}
+\item{base_size}{A numeric base font size.}
 
-\item{palette}{Either "lab", "ddot", or a character vector of hex colors.}
+\item{palette}{A character string; one of \code{"lab"}, \code{"ddot"}, or a character vector of hex colors.}
 
-\item{fonts_mmb}{Logical. If TRUE, uses the Neutra Text font family}
+\item{fonts_mayor}{A logical. If \code{TRUE}, uses the Neutra Text font family}
 }
 \value{
 A list of ggplot2 theme and scale components.

@@ -1,4 +1,4 @@
-#' Generate Lab Seed
+#' Generate Lab Random Seed
 #'
 #' Generate a seed for replicable work involving randomization or simulation. At The Lab, we use two types of seeds:
 #' \itemize{

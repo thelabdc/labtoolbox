@@ -2,7 +2,7 @@
 % Please edit documentation in R/gen_lab_seed.R
 \name{gen_lab_seed}
 \alias{gen_lab_seed}
-\title{Generate Lab Seed}
+\title{Generate Lab Random Seed}
 \usage{
 gen_lab_seed(seed_type = "date")
 }

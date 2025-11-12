@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_sf_opendatadc.R
 \name{read_sf_opendatadc}
 \alias{read_sf_opendatadc}
-\title{Download spatial data from Open Data DC}
+\title{Download Spatial Data from Open Data DC}
 \usage{
 read_sf_opendatadc(
   url =

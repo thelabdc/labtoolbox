@@ -2,7 +2,7 @@
 % Please edit documentation in R/make_coef_plot.R
 \name{make_coef_plot}
 \alias{make_coef_plot}
-\title{make_coef_plot Plot treatment effects with confidence intervals against a dotted line at zero}
+\title{Make coefficient plot from models}
 \usage{
 make_coef_plot(
   model_list = list(sample_model_1, sample_model_2, sample_model_3),
@@ -39,5 +39,8 @@ make_coef_plot(
 A ggplot object
 }
 \description{
+Plot treatment effects with confidence intervals against a dotted line at zero
+}
+\details{
 This function takes the output from several models and plots their estimated treatment effects with confidence intervals horizontally, across a dotted line at zero.
 }

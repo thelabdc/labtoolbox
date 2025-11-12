@@ -18,7 +18,10 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of labtoolbox is to ...
+Alyssa [Huberts](https://github.com/alyssa-huberts), Ryan T. [Moore](https://github.com/rtm-dc)
+
+The `{labtoolbox}` package provides functions to simplify and automate common data analysis and presentation tasks for The Lab @ DC.
+
 
 ## Installation
 

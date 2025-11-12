@@ -2,7 +2,7 @@
 % Please edit documentation in R/make_ci_barplot.R
 \name{make_ci_barplot}
 \alias{make_ci_barplot}
-\title{make_ci_barplot}
+\title{Make Barplot with Confidence Intervals around Treatment Effects}
 \usage{
 make_ci_barplot(
   model = sample_model_1,

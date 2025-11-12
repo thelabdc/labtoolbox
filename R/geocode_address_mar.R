@@ -25,7 +25,6 @@
 #' }
 #'
 #' @export
-#'
 
 # Geocode addresses using the MAR
 geocode_address_mar <- function(address = "955 L'Enfant Plaza SW",

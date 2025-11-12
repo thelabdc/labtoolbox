@@ -1,4 +1,4 @@
-#' make_ci_barplot
+#' Make Barplot with Confidence Intervals around Treatment Effects
 #'
 #' Take regression output and make a bar plot which compares a control group with a treatment group, adding confidence intervals to the treatment groups.
 #'
@@ -11,7 +11,7 @@
 #' @return A bar plot with a confidence interval on the treatment arms
 #' @import dplyr ggplot2 tibble
 #' @export
-# Function to return linear combinations of coefficients, with confidence intervals
+
 make_ci_barplot <- function(model = sample_model_1, 
                             treat_arms = c("sample_treatment1"),
                             ci_level = .95,
@@ -43,7 +43,7 @@ make_ci_barplot <- function(model = sample_model_1,
     plot_caption <- paste("The Lab @ DC. Results from a randomized evaluation using ", n_obs, "observations.")
   }
 
-  # make a table of the relevant linear combinations
+  # Make table of relevant linear combinations
 
   coef_table <- tibble(
     term = c("Control", treat_arms),
@@ -63,7 +63,8 @@ make_ci_barplot <- function(model = sample_model_1,
                         linear_combination - (qnorm(1 - (1 - ci_level) / 2) * se))
     )
 
-  # make the plot
+  # Plot
+  
   coef_plot <- ggplot(coef_table) + 
     geom_bar(aes(x = term, y = linear_combination, fill = term), stat = "identity") +
     geom_errorbar(data = coef_table, aes(x = term, ymin = ci_lower, ymax = ci_upper), width = .75) +

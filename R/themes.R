@@ -8,6 +8,7 @@
 #'
 #' @return A list of ggplot2 theme and scale components.
 #' @export
+
 theme_lab <- function(base_size = 12, palette = "lab", fonts_mayor = FALSE) {
 
   # Handle palette input

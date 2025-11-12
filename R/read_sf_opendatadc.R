@@ -1,4 +1,4 @@
-#' Download spatial data from Open Data DC
+#' Download Spatial Data from Open Data DC
 #'
 #' Download and read in spatial data from a feature service on Open Data DC. 
 #' A directory of spatial data is available at \url{https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA}.

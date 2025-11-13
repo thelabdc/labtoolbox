@@ -14,8 +14,9 @@ lab_colors
 An unnamed vector of hex codes for the Lab colors.
 }
 \examples{
+\dontrun{
 lab_colors["lab_blue"]
 scale_color_manual(values = lab_colors[c("lab_blue", "lab_red", "lab_light_blue")])
-
+}
 }
 \keyword{datasets}

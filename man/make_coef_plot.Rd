@@ -2,14 +2,15 @@
 % Please edit documentation in R/make_coef_plot.R
 \name{make_coef_plot}
 \alias{make_coef_plot}
-\title{make_coef_plot Make a plot of treatment effects with confidence intervals against a dotted line at zero}
+\title{Make coefficient plot from models}
 \usage{
 make_coef_plot(
   model_list = list(sample_model_1, sample_model_2, sample_model_3),
   model_names = c("Outcome 1", "Outcome 2", "Outcome 3"),
+  ci_level = 0.95,
   treat_vars = c("sample_treatment1", "sample_treatment1", "sample_treatment1"),
-  plot_title = "Treatment effects",
-  plot_subtitle = "95\% confidence intervals",
+  plot_title = "Treatment Effects",
+  plot_subtitle = "95\% Confidence Intervals",
   plot_caption = "The Lab @ DC. Regression results from a randomized evaluation.",
   return_ci_table = FALSE,
   ...
@@ -20,6 +21,8 @@ make_coef_plot(
 
 \item{model_names}{A character vector with a name for each model}
 
+\item{ci_level}{The confidence level for the intervals to be plotted, expressed as a probability}
+
 \item{treat_vars}{A character vector of the main treatment variable in each regression. If only one is provided, will be assumed to apply to all regressions.}
 
 \item{plot_title}{A title for the plot}
@@ -28,11 +31,16 @@ make_coef_plot(
 
 \item{plot_caption}{A caption for the plot}
 
-\item{return_ci_table}{If TRUE, returns the table of confidence intervals underlying the plot}
+\item{return_ci_table}{A logical; if \code{TRUE}, returns the table of confidence intervals underlying the plot}
+
+\item{...}{Other arguments to be passed to \code{theme_lab()}}
 }
 \value{
 A ggplot object
 }
 \description{
+Plot treatment effects with confidence intervals against a dotted line at zero
+}
+\details{
 This function takes the output from several models and plots their estimated treatment effects with confidence intervals horizontally, across a dotted line at zero.
 }

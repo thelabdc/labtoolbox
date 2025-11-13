@@ -14,8 +14,9 @@ ddot_colors_named
 A named vector of hex codes for the DDOT colors.
 }
 \examples{
+\dontrun{
 lab_colors["ddot_blue"]
 scale_color_manual(values = ddot_colors[c("ddot_gray", "ddot_blue", "ddot_red")])
-
+}
 }
 \keyword{datasets}

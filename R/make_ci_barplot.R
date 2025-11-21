@@ -17,57 +17,54 @@ make_ci_barplot <- function(model = sample_model_1,
                             ci_level = .95,
                             plot_caption = "Sample Plot Caption",
                             ...){
-  # Make sample data in case it's necessary
-
+  
+  # Use sample data if needed
   if(!exists("model")){
     print("Warning: This output uses sample data. Make sure to submit a model for the model parameter.")
     model <- sample_model_1
   }
   tidy_model <- broom::tidy(model)
-
+  
   if(!exists("treat_arms")){
     print("Warning: Make sure to submit the treatment names for the treat_arms parameter.")
-    treat_arms <- c("sample_treatment1")
+    treat_arms <- "sample_treatment1"
   }
-
+  
   # set key terms using the parameters
   intercept <- as.numeric(tidy_model[tidy_model$term == "(Intercept)", "estimate"])
   n_obs <- nobs(model)
-
-  if(!exists("ci_level")){
-    print("Reporting 95% confidence intervals.")
-    ci_level = .95
-  }
-
+  
   if(!exists("plot_caption")){
     plot_caption <- paste("The Lab @ DC. Results from a randomized evaluation using ", n_obs, "observations.")
   }
-
+  
   # Make table of relevant linear combinations
-
+  
   coef_table <- tibble(
     term = c("Control", treat_arms),
     estimate = as.numeric(unlist(tidy_model[tidy_model$term == "(Intercept)" | tidy_model$term %in% treat_arms, "estimate"])),
     se = as.numeric(unlist(tidy_model[tidy_model$term == "(Intercept)" | tidy_model$term %in% treat_arms, "std.error"]))) |>
     mutate(
-      linear_combination = dplyr::case_when(
-        term == "Control" ~  estimate,
+      linear_combination = case_when(
+        term == "Control" ~ estimate,
         term != "Control" ~ estimate + intercept)
-      ) |>
+    ) |>
     mutate(
       ci_upper = ifelse(term == "Control", 
                         NA, 
-                        linear_combination + (qnorm(1 - (1 - ci_level) / 2) * se)),
+                        linear_combination + (qt(1 - (1 - ci_level) / 2, df = model$df.residual) * se)),
       ci_lower = ifelse(term == "Control", 
                         NA, 
-                        linear_combination - (qnorm(1 - (1 - ci_level) / 2) * se))
+                        linear_combination - (qt(1 - (1 - ci_level) / 2, df = model$df.residual) * se))
     )
-
+  
   # Plot
   
   coef_plot <- ggplot(coef_table) + 
     geom_bar(aes(x = term, y = linear_combination, fill = term), stat = "identity") +
-    geom_errorbar(data = coef_table, aes(x = term, ymin = ci_lower, ymax = ci_upper), width = .75) +
+    geom_errorbar(data = coef_table, 
+                  aes(x = term, ymin = ci_lower, ymax = ci_upper), 
+                  width = .75) +
     theme_lab(...) +
     labs(caption = plot_caption,
          title = "Treatment Effect",
@@ -77,5 +74,5 @@ make_ci_barplot <- function(model = sample_model_1,
          fill = "")
   
   return(coef_plot)
-
+  
 }

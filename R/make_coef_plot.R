@@ -27,24 +27,24 @@ make_coef_plot <- function(model_list = list(sample_model_1, sample_model_2, sam
                            plot_caption = "The Lab @ DC. Regression results from a randomized evaluation.",
                            return_ci_table = FALSE,
                            ...) {
-
+  
   n_models <- length(model_list)
   
   if(length(treat_vars) == 1){
     treat_vars <- rep(treat_vars, length(model_list))
   }
-
+  
   # Create an empty storage data frame 
   plotting_df <- tibble(term = rep(NA, n_models),
                         estimate = rep(NA, n_models),
                         upper = rep(NA, n_models),
                         lower = rep(NA, n_models),
                         model = 1:n_models)
-
+  
   # Iterate through each model in the input list
   for (i in 1:length(model_list)) {
     current_model <- model_list[[i]]
-
+    
     # Perform operations on the current model
     # Extract coefficients
     plotting_df[i, "term"] <- names(coef(current_model)[treat_vars[i]])
@@ -54,6 +54,7 @@ make_coef_plot <- function(model_list = list(sample_model_1, sample_model_2, sam
     plotting_df[i, "upper"] <- coef(current_model)[treat_vars[i]] +
       (qt(1 - (1 - ci_level) / 2, df = current_model$df.residual) * 
          coef(summary(current_model))[, "Std. Error"][treat_vars[i]])
+    
     plotting_df[i, "lower"] <- coef(current_model)[treat_vars[i]] -
       (qt(1 - (1 - ci_level) / 2, df = current_model$df.residual) * 
          coef(summary(current_model))[, "Std. Error"][treat_vars[i]])
@@ -63,6 +64,7 @@ make_coef_plot <- function(model_list = list(sample_model_1, sample_model_2, sam
     }else(
       plotting_df$model <- 1:length(model)
     )
+    
     coef_plot <- ggplot(plotting_df) + 
       geom_point(aes(x = model, y = estimate,  color = factor(model)), stat = "identity") +
       geom_errorbar(data = plotting_df, 
@@ -77,12 +79,12 @@ make_coef_plot <- function(model_list = list(sample_model_1, sample_model_2, sam
            subtitle = plot_subtitle,
            x = "",
            y = "Treatment Effect")
-    }
-
+  }
+  
   # Return the collected results
   if(return_ci_table == TRUE){
     return(plotting_df)
   }else
     return(coef_plot)
-
+  
 }

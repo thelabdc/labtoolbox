@@ -15,7 +15,7 @@ common data analysis and presentation tasks for The Lab @ DC.
 
 ## Installation
 
-You can install the development version of labtoolbox from
+You can install the development version of `{labtoolbox}` from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -29,7 +29,8 @@ This is where we will keep examples of the package’s functions.
 
 ``` r
 library(labtoolbox)
-## basic example code
+
+# basic example code
 ```
 
 (We use `README.Rmd` instead of just `README.md` to include R chunks. We

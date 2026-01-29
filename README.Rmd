@@ -25,7 +25,7 @@ The `{labtoolbox}` package provides functions to simplify and automate common da
 
 ## Installation
 
-You can install the development version of labtoolbox from [GitHub](https://github.com/) with:
+You can install the development version of `{labtoolbox}` from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -38,7 +38,8 @@ This is where we will keep examples of the package's functions.
 
 ```{r example}
 library(labtoolbox)
-## basic example code
+
+# basic example code
 ```
 
 (We use `README.Rmd` instead of just `README.md` to include R chunks. We still need to render `README.Rmd` regularly with `devtools::build_readme()`.)

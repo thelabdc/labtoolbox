@@ -33,7 +33,7 @@ make_ci_barplot <- function(model = sample_model_1,
   # set key terms using the parameters
   intercept <- as.numeric(tidy_model[tidy_model$term == "(Intercept)", "estimate"])
   n_obs <- nobs(model)
-  
+
   if(!exists("plot_caption")){
     plot_caption <- paste("The Lab @ DC. Results from a randomized evaluation using ", n_obs, "observations.")
   }

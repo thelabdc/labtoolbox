@@ -37,6 +37,8 @@ make_ci_barplot()
 
 <img src="man/figures/README-example-1.png" width="100%" />
 
-(In order to include R chunks, we use `README.Rmd` instead of
+## Compilation
+
+In order to include R chunks, we use `README.Rmd` instead of
 `README.md`. We render `README.Rmd` regularly with
-`devtools::build_readme()`.)
+`devtools::build_readme()`.

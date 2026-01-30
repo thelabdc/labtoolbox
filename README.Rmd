@@ -37,7 +37,7 @@ You may need to manually install package `{sysfonts}` with
 
 ## Example
 
-```{r example}
+```{r example, fig.height=4}
 library(labtoolbox)
 
 # Make treatment effect barplot with sample data:

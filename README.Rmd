@@ -2,7 +2,7 @@
 output: github_document
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- README.md is generated from README.Rmd. Please edit this file. -->
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -32,14 +32,16 @@ You can install the development version of `{labtoolbox}` from [GitHub](https://
 devtools::install_github("thelabdc/labtoolbox")
 ```
 
-## Example
+You may need to manually install package `{sysfonts}` with
+`install.packages("sysfonts")`.
 
-This is where we will keep examples of the package's functions. 
+## Example
 
 ```{r example}
 library(labtoolbox)
 
-# basic example code
+# Make treatment effect barplot with sample data:
+make_ci_barplot()
 ```
 
-(We use `README.Rmd` instead of just `README.md` to include R chunks. We still need to render `README.Rmd` regularly with `devtools::build_readme()`.)
+(In order to include R chunks, we use `README.Rmd` instead of `README.md`. We render `README.Rmd` regularly with `devtools::build_readme()`.)

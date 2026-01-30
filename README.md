@@ -1,5 +1,5 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- README.md is generated from README.Rmd. Please edit this file. -->
 
 # labtoolbox
 
@@ -23,16 +23,20 @@ You can install the development version of `{labtoolbox}` from
 devtools::install_github("thelabdc/labtoolbox")
 ```
 
-## Example
+You may need to manually install package `{sysfonts}` with
+`install.packages("sysfonts")`.
 
-This is where we will keep examples of the package’s functions.
+## Example
 
 ``` r
 library(labtoolbox)
 
-# basic example code
+# Make treatment effect barplot with sample data:
+make_ci_barplot()
 ```
 
-(We use `README.Rmd` instead of just `README.md` to include R chunks. We
-still need to render `README.Rmd` regularly with
+<img src="man/figures/README-example-1.png" width="100%" />
+
+(In order to include R chunks, we use `README.Rmd` instead of
+`README.md`. We render `README.Rmd` regularly with
 `devtools::build_readme()`.)

@@ -1,33 +1,36 @@
-#' Generate Lab Random Seed
+#' @title Generate Reproducible Random Seed
 #'
-#' Generate a seed for replicable work involving randomization or simulation. At The Lab, we use two types of seeds:
+#' @description Generate an integer seed for reproducible randomization or simulation
+#'
+#' @details Two seed types are supported:
 #' \itemize{
-#' \item date seeds (public-relevant implementations)
-#' \item sampled seeds (all other implementations)
+#'   \item \code{"date"}: constructed from the current local time in the format \code{yymmddHH}.
+#'   \item \code{"sampled"}: sampled uniformly from the integers \code{1} to \code{1e9}.
 #' }
-#' We consider *public-relevant* implementations to include situations like a random assignment of a program to some members of a waitlist, a random selection of some households to participate in a survey, and random assignment of hypothetical treatments during confirmatory randomization inference.\cr \cr
-
-#' For either type of seed, run this function only once, and then include the seed in your code.
-
-#' @param seed_type A character string specifying \code{"date"} or \code{"sampled"}; defaults to \code{"date"}
+#' For either type, run this function once and record the resulting seed in your code.
 #'
-#' @return Prints the generated seed
+#' @param seed_type seed type: \code{"date"} (default) or \code{"sampled"}
+#'
+#' @return An integer scalar seed
+#'
 #' @examples
-#' gen_lab_seed()
-#' gen_lab_seed("sampled")
-#' @export
+#' # Generate a seed based on the current date/time and use it
+#' set.seed(gen_lab_seed())
+#' runif(3)
 #'
-gen_lab_seed <- function(seed_type = "date") {
-  #stopifnot(is.character(string), length(string) <=1)
-  if(seed_type == "date"){
-    return(
-      format(Sys.time(), "%y%m%d%H")
-      )
-  }else{
-    if(seed_type == "sampled"){
-    return(sample(1e9, 1))
-    }else{
-    return(print("Please specify seed_type ('date' or 'sampled')"))
-      }
+#' # Generate a sampled seed and use it
+#' set.seed(gen_lab_seed("sampled"))
+#' rnorm(3)
+#'
+#' @export
+gen_lab_seed <- function(seed_type = c("date", "sampled")) {
+  seed_type <- match.arg(seed_type)
+  
+  if (seed_type == "date") {
+    # yymmddHH; fits within 32-bit integer range
+    return(as.integer(format(Sys.time(), "%y%m%d%H")))
+  } else {
+    # sampled uniformly from 1..1e9
+    return(as.integer(sample.int(1e9, 1)))
   }
 }

@@ -16,7 +16,8 @@
 #' @import sf httr png ggplot2 dplyr
 #' @export
 plot_dc_basemap <- function(
-    bbox = c(xmin = -77.11981, ymin = 38.79157, xmax = -76.90917, ymax = 38.99596),
+   # bbox = c(xmin = -77.11981, ymin = 38.79157, xmax = -76.90917, ymax = 38.99596),
+  bbox = NULL,
     base_source  = c("all_dc", "ward", "anc", "custom"),
     ward = NULL,
     anc  = NULL,
@@ -83,7 +84,13 @@ plot_dc_basemap <- function(
   #}
 
   
-  bbox <- st_bbox(outline)
+  if (is.null(bbox)) {
+    outline_4326 <- sf::st_transform(outline, 4326)
+    bbox <- sf::st_bbox(outline_4326)
+  }
+  
+  
+  #bbox <- st_bbox(outline)
   
   
   # ---- 5) Fetch raster via helper (write or in-memory) ----

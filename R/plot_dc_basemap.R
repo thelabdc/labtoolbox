@@ -16,8 +16,7 @@
 #' @import sf httr png ggplot2 dplyr
 #' @export
 plot_dc_basemap <- function(
-   # bbox = c(xmin = -77.11981, ymin = 38.79157, xmax = -76.90917, ymax = 38.99596),
-  bbox = NULL,
+    bbox = NULL,
     base_source  = c("all_dc", "ward", "anc", "custom"),
     ward = NULL,
     anc  = NULL,

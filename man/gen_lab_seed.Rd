@@ -2,26 +2,34 @@
 % Please edit documentation in R/gen_lab_seed.R
 \name{gen_lab_seed}
 \alias{gen_lab_seed}
-\title{Generate Lab Random Seed}
+\title{Generate Reproducible Random Seed}
 \usage{
-gen_lab_seed(seed_type = "date")
+gen_lab_seed(seed_type = c("date", "sampled"))
 }
 \arguments{
-\item{seed_type}{A character string specifying \code{"date"} or \code{"sampled"}; defaults to \code{"date"}}
+\item{seed_type}{seed type: \code{"date"} (default) or \code{"sampled"}}
 }
 \value{
-Prints the generated seed
+An integer scalar seed
 }
 \description{
-Generate a seed for replicable work involving randomization or simulation. At The Lab, we use two types of seeds:
-\itemize{
-\item date seeds (public-relevant implementations)
-\item sampled seeds (all other implementations)
+Generate an integer seed for reproducible randomization or simulation
 }
-We consider \emph{public-relevant} implementations to include situations like a random assignment of a program to some members of a waitlist, a random selection of some households to participate in a survey, and random assignment of hypothetical treatments during confirmatory randomization inference.\cr \cr
-For either type of seed, run this function only once, and then include the seed in your code.
+\details{
+Two seed types are supported:
+\itemize{
+\item \code{"date"}: constructed from the current local time in the format \code{yymmddHH}.
+\item \code{"sampled"}: sampled uniformly from the integers \code{1} to \code{1e9}.
+}
+For either type, run this function once and record the resulting seed in your code.
 }
 \examples{
-gen_lab_seed()
-gen_lab_seed("sampled")
+# Generate a seed based on the current date/time and use it
+set.seed(gen_lab_seed())
+runif(3)
+
+# Generate a sampled seed and use it
+set.seed(gen_lab_seed("sampled"))
+rnorm(3)
+
 }
